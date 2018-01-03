@@ -7,11 +7,13 @@
 //
 
 #import "UIImage+mark.h"
+#import "UIImage+MultiFormat.h"
 
 @implementation UIImage (mark)
+//本地水印图片
 - (instancetype)waterMarkImage:(UIImage *)markImage markImageRect:(CGRect)markImageRect markName:(NSString *)markName markNameRect:(CGRect)markNameRect{
     
-    CGSize size = self.size;
+    CGSize size = [UIScreen mainScreen].bounds.size;
     //开启图片上下文
     UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
     
@@ -21,7 +23,7 @@
     //绘制水印图片
     [markImage drawInRect:markImageRect];
     
-    NSDictionary *attr = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:30],  //设置字体
+    NSDictionary *attr = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:17],  //设置字体
                            NSForegroundColorAttributeName : [UIColor redColor]   //设置字体颜色
                            };
     
@@ -36,4 +38,19 @@
     
     return image;
 }
+
+//网络水印图片
+- (instancetype)waterMarkNetworkImageName:(NSString *)markNetworkImageName markImageRect:(CGRect)markImageRect markName:(NSString *)markName markNameRect:(CGRect)markNameRect {
+    
+    //网络的水印图片
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:markNetworkImageName]];
+    UIImage *markImage = [UIImage sd_imageWithData:data];
+    
+   return [self waterMarkImage:markImage markImageRect:markImageRect markName:markName markNameRect:markNameRect];
+    
+    
+}
+
+
+
 @end
