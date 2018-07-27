@@ -40,4 +40,18 @@
  @param size 绘图尺寸 一般为 UIImageView的尺寸
  */
 - (void)addImageWatermarkWithImageName:(NSString *)imageName watermarkImage:(UIImage *)watermarkImage imagePoint:(CGPoint)imagePoint imageWidth:(CGFloat)imageWidth imageAngle:(CGFloat)imageAngle size:(CGSize)size;
+
+/**
+ 文字和图片水印
+ @param imageName 加载图片的地址
+ @param text 需要添加的水印文字
+ @param watermarkImage 需要添加的水印图片
+ @param textPoint 需要添加水印文字的起点
+ @param imagePoint 需要添加水印图片的起点
+ @param attributed 水印文字的属性
+ @param imageWidth 需要添加水印图片的宽度
+ @param imageAngle 需要添加水印图片旋转的角度 如果不旋转 就传入 0
+ @param size 绘图的尺寸
+ */
+- (void)addGatherWithImageName:(NSString *)imageName text:(NSString *)text watermarkImage:(UIImage *)watermarkImage textPoint:(CGPoint)textPoint imagePoint:(CGPoint)imagePoint attributed:(NSDictionary<NSAttributedStringKey,id> *)attributed imageWidth:(CGFloat)imageWidth imageAngle:(CGFloat)imageAngle size:(CGSize)size;
 @end

@@ -196,6 +196,34 @@
     return watermarkImage;
 }
 
+#pragma mark - 为图片添加 文字和图片水印
+- (UIImage *)addGatherWithText:(NSString *)text image:(UIImage *)image textPoint:(CGPoint)textPoint imagePoint:(CGPoint)imagePoint attributed:(NSDictionary<NSAttributedStringKey,id> *)attributed imageWidth:(CGFloat)imageWidth imageAngle:(CGFloat)imageAngle size:(CGSize)size {
+    //开启图片上下文
+    UIGraphicsBeginImageContext(size);
+    
+    //先把图片画进去上下文中
+    [self drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    
+    //添加文字水印
+    CGFloat textX = textPoint.x;
+    CGFloat textY = textPoint.y;
+    CGFloat textWidht = size.width - textX;
+    CGFloat textHeight = [self textHeightWithText:text attributed:attributed textWidth:textWidht];
+    [text drawInRect:CGRectMake(textX, textY, textWidht, textHeight) withAttributes:attributed];
+    
+    //添加图片水印
+    UIImage *scaleImage = [[image imageCompressForTargetWidth:imageWidth] rotateImageWithImageAngle:imageAngle IsExpand:YES];
+    [scaleImage drawAtPoint:imagePoint];
+    
+    //获取处理好的水印图片
+    UIImage *gatherImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    //结束图片上下文
+    UIGraphicsEndImageContext();
+    
+    return gatherImage;
+}
+
 #pragma mark - 计算文字的高度
 - (CGFloat)textHeightWithText:(NSString *)text attributed:(NSDictionary<NSAttributedStringKey,id> *)attributed textWidth:(CGFloat)textWidth {
     return [text boundingRectWithSize:CGSizeMake(textWidth, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributed context:nil].size.height;

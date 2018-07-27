@@ -31,4 +31,11 @@
         self.image = [image addImageWatermarkWithImage:watermarkImage imagePoint:imagePoint imageWidth:imageWidth imageAngle:imageAngle size:size];
     }];
 }
+
+#pragma mark - 文字和图片水印
+- (void)addGatherWithImageName:(NSString *)imageName text:(NSString *)text watermarkImage:(UIImage *)watermarkImage textPoint:(CGPoint)textPoint imagePoint:(CGPoint)imagePoint attributed:(NSDictionary<NSAttributedStringKey,id> *)attributed imageWidth:(CGFloat)imageWidth imageAngle:(CGFloat)imageAngle size:(CGSize)size {
+    [self sd_setImageWithURL:[NSURL URLWithString:imageName] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        self.image = [image addGatherWithText:text image:watermarkImage textPoint:textPoint imagePoint:imagePoint attributed:attributed imageWidth:imageWidth imageAngle:imageAngle size:size];
+    }];
+}
 @end

@@ -54,4 +54,18 @@
  @return 处理好的水印图片
  */
 - (UIImage *)addImageWatermarkWithImage:(UIImage *)image imagePoint:(CGPoint)imagePoint imageWidth:(CGFloat)imageWidth imageAngle:(CGFloat)imageAngle size:(CGSize)size;
+
+/**
+ 为图片添加 文字和图片水印
+ @param text 需要添加的水印文字
+ @param image 需要添加的水印图片
+ @param textPoint 需要添加水印文字的起点
+ @param imagePoint 需要添加水印图片的起点
+ @param attributed 水印文字的属性
+ @param imageWidth 需要添加水印图片的宽度
+ @param imageAngle 需要添加水印图片旋转的角度 如果不旋转 就传入 0
+ @param size 绘图的尺寸
+ @return 处理好的水印图片
+ */
+- (UIImage *)addGatherWithText:(NSString *)text image:(UIImage *)image textPoint:(CGPoint)textPoint imagePoint:(CGPoint)imagePoint attributed:(NSDictionary<NSAttributedStringKey,id> *)attributed imageWidth:(CGFloat)imageWidth imageAngle:(CGFloat)imageAngle size:(CGSize)size;
 @end

@@ -31,13 +31,17 @@
     CGFloat screenW = [UIScreen mainScreen].bounds.size.width;
     
     //文字水印
-    [self.imageView addTextWatermarkWithImageName:url text:@"我是大角牛" textPoint:CGPointMake(150, 20) size:[UIScreen mainScreen].bounds.size attributed:@{NSFontAttributeName : [UIFont systemFontOfSize:20], NSForegroundColorAttributeName : [UIColor redColor]}];
+//    [self.imageView addTextWatermarkWithImageName:url text:@"我是大角牛" textPoint:CGPointMake(150, 20) size:[UIScreen mainScreen].bounds.size attributed:@{NSFontAttributeName : [UIFont systemFontOfSize:20], NSForegroundColorAttributeName : [UIColor redColor]}];
     
     //水印图片
 //    [self.imageView addImageWatermarkWithImageName:url watermarkImage:waterImage imagePoint:CGPointMake(screenW - 100, 0) imageWidth:100 size:[UIScreen mainScreen].bounds.size];
     
     //水印图片 旋转
 //    [self.imageView addImageWatermarkWithImageName:url watermarkImage:waterImage imagePoint:CGPointMake(screenW - 150, 0) imageWidth:100 imageAngle:45 size:[UIScreen mainScreen].bounds.size];
+    
+    
+    //图片 文字 水印
+    [self.imageView addGatherWithImageName:url text:@"我是大角牛" watermarkImage:waterImage textPoint:CGPointMake(150, 20) imagePoint:CGPointMake(screenW - 100, 0) attributed:@{NSFontAttributeName : [UIFont systemFontOfSize:20], NSForegroundColorAttributeName : [UIColor redColor]} imageWidth:100 imageAngle:0 size:[UIScreen mainScreen].bounds.size];
     
     
     
