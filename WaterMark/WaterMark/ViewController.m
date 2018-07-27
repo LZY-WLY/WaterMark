@@ -7,8 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "UIImage+mark.h"
-#import "UIImageView+mark.h"
+#import "UIImageView+LZYWatermark.h"
 
 #define kScrrentW [UIScreen mainScreen].bounds.size.width
 #define kScrrentH [UIScreen mainScreen].bounds.size.height
@@ -26,28 +25,22 @@
     
     //网络图片地址
     NSString *url = @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1514900854889&di=6172e4aef493d8b2e74589da2d0b1251&imgtype=0&src=http%3A%2F%2Fpic13.nipic.com%2F20110419%2F6782757_171000681191_2.jpg";
-    // =======================  绘制本地水印图片  =======================
-    //图片模板
-    UIImage *image = [UIImage imageNamed:@"liutao"];
+    
     //添加的水印图片
     UIImage *waterImage = [UIImage imageNamed:@"easyicon"];
-    //添加的水印图片的rect
-    CGFloat waterImageH = kWaterImageH * waterImage.size.height / waterImage.size.width;
-    CGRect waterImageRect = CGRectMake(kScrrentW - kWaterImageH, 0, kWaterImageH, waterImageH);
-    //添加的网络水印图片的rect
-    CGRect waterNetworkImageRect = waterImageRect;
-    //添加的水印文字的rect
-    CGRect waterNameRect = CGRectMake((kScrrentW - 100) / 2.0, 10, 200, 30);
+    CGFloat screenW = [UIScreen mainScreen].bounds.size.width;
     
-    //加载绘制本地水印后的图片
-    //self.imageView.image = [image waterMarkImage:waterImage markImageRect:waterImageRect markName:@"刘涛女神" markNameRect:waterNameRect];
+    //文字水印
+    [self.imageView addTextWatermarkWithImageName:url text:@"我是大角牛" textPoint:CGPointMake(150, 20) size:[UIScreen mainScreen].bounds.size attributed:@{NSFontAttributeName : [UIFont systemFontOfSize:20], NSForegroundColorAttributeName : [UIColor redColor]}];
     
-    //加载绘制网络水印后的图片
-    self.imageView.image = [image waterMarkNetworkImageName:url markImageRect:waterNetworkImageRect markName:@"刘涛女神" markNameRect:waterNameRect];
+    //水印图片
+//    [self.imageView addImageWatermarkWithImageName:url watermarkImage:waterImage imagePoint:CGPointMake(screenW - 100, 0) imageWidth:100 size:[UIScreen mainScreen].bounds.size];
+    
+    //水印图片 旋转
+//    [self.imageView addImageWatermarkWithImageName:url watermarkImage:waterImage imagePoint:CGPointMake(screenW - 150, 0) imageWidth:100 imageAngle:45 size:[UIScreen mainScreen].bounds.size];
     
     
-    // =======================  绘制网络水印图片  =======================
-    //[self.imageView setWaterMarkTargettImage:image markImageName:url markImageRect:waterImageRect markName:@"刘涛女神" markNameRect:waterNameRect];
+    
 }
 
 
